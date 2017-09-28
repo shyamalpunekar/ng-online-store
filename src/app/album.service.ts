@@ -30,6 +30,11 @@ export class AlbumService {
       description: localUpdatedAlbum.description
     })
   }
+
+  deleteAlbum(localAlbumToDelete){
+    var albumEntryInFirebase = this.getAlbumById(localAlbumToDelete.$key);
+    albumEntryInFirebase.remove();
+  }
   // getAlbumById(albumId: number){
   //   for(var i=0; i<= ALBUMS.length - 1; i++){
   //     if(ALBUMS[i].id === albumId){
