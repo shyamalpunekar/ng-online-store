@@ -18,6 +18,18 @@ export class AlbumService {
     this.albums.push(newAlbum);
   }
 
+  getAlbumById(albumId: string){
+    return this.database.object('/albums/' + albumId);
+  }
+
+  updateAlbum(localUpdatedAlbum){
+    var albumEntryInFirebase = this.getAlbumById(localUpdatedAlbum.$key);
+    albumEntryInFirebase.update({
+      title: localUpdatedAlbum.title,
+      artist: localUpdatedAlbum.artist,
+      description: localUpdatedAlbum.description
+    })
+  }
   // getAlbumById(albumId: number){
   //   for(var i=0; i<= ALBUMS.length - 1; i++){
   //     if(ALBUMS[i].id === albumId){
